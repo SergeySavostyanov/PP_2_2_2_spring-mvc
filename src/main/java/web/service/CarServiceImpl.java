@@ -1,13 +1,10 @@
 package web.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import web.model.Car;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class CarServiceImpl {
-    @Autowired
     private static List<Car> list = new ArrayList<>();
 
     static {
@@ -27,14 +24,13 @@ public class CarServiceImpl {
     }
 
 
-    public static List<Car> CarsListCount(Integer Count) {
+    public static List<Car> carsListCount(Integer count) {
         List<Car> carList = new ArrayList<>();
-        if (Count == null || Count >= 5) {
+        if (count == null || count >= 5) {
             carList = list;
-        } else if (Count <= list.size() && Count >= 0) {
-            for (int c = 0; c < Count; c++) {
-                carList.add(list.get(c));
-            }
-        }return carList;
+        } else if (count <= list.size() && count >= 0) {
+            carList = list.subList(0, count);
+        }
+        return carList;
     }
 }
